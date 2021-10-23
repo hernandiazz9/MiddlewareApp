@@ -61,6 +61,44 @@ __Pagina inicial__: landing page con
 - [ ] Botón para ingresar como empresa al inicio de sesion
 - [ ] Video o texto representativo del proyecto
 
+__Pagina para acceder__: inicion de sesion y autenticacion
+- [ ] Posibilidad de crear una cuenta con mail o github si es la primera vez en la app
+- [ ] Posibilidad de loguearse con la cuenta ya existente
+- [ ] Posibilidad de recuperar su cuenta
+- [ ] Nuevos usuarios seran redirigidos a la ruta de Perfil que corresponda segun sean programadores o empresas
+- [ ] Usuarios ya existentes seran redirigidos a la Ruta Home
+
+__Ruta principal__: debe contener
+- [ ] Informacion necesaria para ayudar a programadores a mejorar su perfil
+        -cursos
+        - templates
+        -challenges
+- [ ] Publicaciones destacadas de los usuarios
+- [ ] Área donde se podra acceder a la Ruta de empresas y a la de programadores
+
+__Ruta de creación de Perfil Programador__: debe contener
+- [ ] Un formulario __controlado__ con los siguientes campos como lineamiento general pudiendo ser modificado,
+- [ ] Posibilidad de seleccionar/agregar varios campos en simultaneo
+- [ ] Botón/Opción para crear tu perfil
+  - Trabajo de interes
+        - Tiempo completo
+        - Trabajo Flexible
+        - Pasantias
+  - Habilidades
+        - Listado de Tecnologias
+        - Idiomas
+        - Otras habilidades
+  - Ubicacion
+        -Oportunidades Remoto
+        -Fijas u oficinas
+  - Contacto
+        - Enlaces a github, Linkedin, redes
+        - telefono
+        -mail
+  - Fotografia
+  - Proyectos
+  - Video de presentacion de 30 segundos
+
 
 
 
