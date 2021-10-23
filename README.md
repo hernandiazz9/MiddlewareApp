@@ -68,7 +68,7 @@ __Pagina para acceder__: inicion de sesion y autenticacion
 - [ ] Nuevos usuarios seran redirigidos a la ruta de Perfil que corresponda segun sean programadores o empresas
 - [ ] Usuarios ya existentes seran redirigidos a la Ruta Home
 
-__Ruta principal__: debe contener
+__Ruta principal__: La Home debe contener
 - [ ] Informacion necesaria para ayudar a programadores a mejorar su perfil
         -cursos
         - templates
@@ -77,9 +77,17 @@ __Ruta principal__: debe contener
 - [ ] Área donde se podra acceder a la Ruta de empresas y a la de programadores
 
 __Ruta de creación de Perfil Programador__: debe contener
-- [ ] Un formulario __controlado__ con los siguientes campos como lineamiento general pudiendo ser modificado,
+- [ ] Un formulario __controlado__ con los siguientes campos como lineamiento general pudiendo ser modificados
 - [ ] Posibilidad de seleccionar/agregar varios campos en simultaneo
-- [ ] Botón/Opción para crear tu perfil
+- [ ] Botón/Opción para crear el perfil
+- [ ] Botón/Opción para redirigir a la Ruta Home
+  - Datos personales
+        - Nombre Completo
+        - Nombre de usuario 
+  - Contacto
+        - Enlaces a github, Linkedin, redes
+        - telefono
+        - mail 
   - Trabajo de interes
         - Tiempo completo
         - Trabajo Flexible
@@ -88,16 +96,56 @@ __Ruta de creación de Perfil Programador__: debe contener
         - Listado de Tecnologias
         - Idiomas
         - Otras habilidades
-  - Ubicacion
+  - Ubicacion (pudiendo usar API de ciudades/paises)
         -Oportunidades Remoto
         -Fijas u oficinas
+- [ ] Posibilidad de subir Fotografia desde su pc o celular
+- [ ] Posibilidad de compartir sus Proyectos
+- [ ] Posibilidad de grabar un Video de presentacion de 30 segundos
+
+__Ruta de creación de Perfil Empresa__: debe contener
+- [ ] Un formulario __controlado__ con los siguientes campos como lineamiento general pudiendo ser modificados
+- [ ] Posibilidad de seleccionar/agregar varios campos en simultaneo 
+- [ ] Botón/Opción para crear el perfil
+- [ ] Botón/Opción para redirigir a la Ruta Home
+  - Datos de la Compania
+        - Nombre (pudiendo usar API de listado de companias)
+        - Nombre de usuario 
   - Contacto
-        - Enlaces a github, Linkedin, redes
+        - Enlaces a paginas web de la marca
         - telefono
-        -mail
-  - Fotografia
-  - Proyectos
-  - Video de presentacion de 30 segundos
+        - mail 
+  - Tipo de Trabajo
+        - Tiempo completo
+        - Medio Tiempo
+        - Freelance
+        - Pasantias
+  - Tipo de Contrato
+        - Empleado
+        - Contratista
+        - Depende de la ubicacion
+        - A definir       
+  - Cargo a Cubrir
+        - input para colocarlo
+  - Ubicacion del Empleo
+        - Oportunidades Remoto
+        - Ubicacion Fisica
+  - Eleccion de Residentes
+        - Latam
+        - Ciertos paises
+        - Ciertas zonas horarias
+  - Salario
+        - Definido
+        - En Rango
+        - Posibilidad de Ingresar moneda
+        - Posibilidad de ingresar el monto
+        - Posibilidad de ingresar:
+            - al mes
+            - por hora
+        - Posibilidad de agregar compensaciones o valor agregado
+- [ ] Posibilidad de subir Fotografia desde su pc o celular
+- [ ] Posibilidad de compartir sus Busquedas
+- [ ] Posibilidad de grabar un Video de incentivo a candidatos de 30 segundos
 
 
 
