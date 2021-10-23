@@ -114,6 +114,9 @@ __Ruta de creación de Perfil Empresa__: debe contener
 - [ ] Botón/Opción para crear el perfil
 - [ ] Botón/Opción para eliminar el perfil
 - [ ] Botón/Opción para redirigir a la Ruta Home
+- [ ] Botón/Opción para eliminar/ editar pubicaciones de empleos
+- [ ] Botón/Opción para acceder a los programadores postulados en su publicacion
+- [ ] Botón/Opción para acceder a un programador postulados en su publicacion
   - Datos de la Compania
         - Nombre (pudiendo usar API de listado de companias)
         - Nombre de usuario 
@@ -153,7 +156,7 @@ __Ruta de creación de Perfil Empresa__: debe contener
 - [ ] Posibilidad de compartir sus Busquedas
 - [ ] Posibilidad de grabar un Video de incentivo a candidatos de 30 segundos
 - [ ] Posibilidad de acceder a la Ruta de 'Busca tu Programador'
-- [ ] 
+
 
 __Ruta de Programadores__: debe contener
 
