@@ -70,16 +70,20 @@ __Pagina para acceder__: inicion de sesion y autenticacion
 
 __Ruta principal__: La Home debe contener
 - [ ] Informacion necesaria para ayudar a programadores a mejorar su perfil
-        -cursos
+        - cursos
         - templates
-        -challenges
+        - challenges
+        - guias
 - [ ] Publicaciones destacadas de los usuarios
 - [ ] Área donde se podra acceder a la Ruta de empresas y a la de programadores
+- [ ] Poder buscar por nombre de empresa o programador 
 
 __Ruta de creación de Perfil Programador__: debe contener
 - [ ] Un formulario __controlado__ con los siguientes campos como lineamiento general pudiendo ser modificados
 - [ ] Posibilidad de seleccionar/agregar varios campos en simultaneo
+- [ ] Posibilidad de eliminar/editar varios campos en simultaneo
 - [ ] Botón/Opción para crear el perfil
+- [ ] Botón/Opción para eliminar el perfil
 - [ ] Botón/Opción para redirigir a la Ruta Home
   - Datos personales
         - Nombre Completo
@@ -104,9 +108,11 @@ __Ruta de creación de Perfil Programador__: debe contener
 - [ ] Posibilidad de grabar un Video de presentacion de 30 segundos
 
 __Ruta de creación de Perfil Empresa__: debe contener
-- [ ] Un formulario __controlado__ con los siguientes campos como lineamiento general pudiendo ser modificados
+- [ ] Un formulario __controlado__ de publicacion de empleo con los siguientes campos como lineamiento general pudiendo ser modificados
 - [ ] Posibilidad de seleccionar/agregar varios campos en simultaneo 
+- [ ] Posibilidad de eliminar/editar varios campos en simultaneo 
 - [ ] Botón/Opción para crear el perfil
+- [ ] Botón/Opción para eliminar el perfil
 - [ ] Botón/Opción para redirigir a la Ruta Home
   - Datos de la Compania
         - Nombre (pudiendo usar API de listado de companias)
@@ -146,7 +152,18 @@ __Ruta de creación de Perfil Empresa__: debe contener
 - [ ] Posibilidad de subir Fotografia desde su pc o celular
 - [ ] Posibilidad de compartir sus Busquedas
 - [ ] Posibilidad de grabar un Video de incentivo a candidatos de 30 segundos
+- [ ] Posibilidad de acceder a la Ruta de 'Busca tu Programador'
+- [ ] 
 
+__Ruta de Programadores__: debe contener
 
+- [ ] Input de búsqueda de programadores por 
+- [ ] Área donde se verá el listado de programadores. Al iniciar deberá cargar los primeros resultados obtenidos desde la ruta `GET /developers` y deberá mostrar:
+  - Imagen del programador
+  - Nombre
+  - Habilidades 
+- [ ] Botones/Opciones para filtrar por tecnologias y por tipo de 
+- [ ] Botones/Opciones para ordenar tanto ascendentemente como descendentemente los países por orden alfabético y por cantidad de población
+- [ ] Paginado para ir buscando y mostrando los siguientes paises, 10 paises por pagina, mostrando los primeros 9 en la primer pagina.
 
 
