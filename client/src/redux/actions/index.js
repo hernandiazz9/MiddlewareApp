@@ -1,4 +1,5 @@
 import { LOGIN_OKEY, LOGOUT_OKEY } from "../types";
+import axios from 'axios';
 
 // export const loginUserAction = (user) => {
 //    return async (dispatch)=>{
@@ -37,3 +38,11 @@ export const logOutUserAction = () => ({
 //    type: GET_RECIPES_ERROR,
 //    payload: error,
 //  });
+
+export function postUser(payload) {
+  return async function(dispatch) {
+    const response = await axios.post('http://localhost:3001/juniors', payload)
+    console.log(response)
+    return response;
+  }
+};

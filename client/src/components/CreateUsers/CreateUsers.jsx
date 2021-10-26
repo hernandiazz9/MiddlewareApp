@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import { useDispatch } from 'react-redux';
 import {useHistory} from 'react-router-dom'
+import { postUser } from '../../redux/actions';
  
 
 const CreateUsers = () => {
@@ -24,6 +25,7 @@ const CreateUsers = () => {
             [e.target.name] : e.target.value
         })
     };
+    
 
     function handleSelectLanguages(e) {
         setInput({
@@ -39,9 +41,11 @@ const CreateUsers = () => {
         })
     };
 
+    console.log(input)
+
     function handleSubmit(e) {
         e.preventDefault();
-        dispatch()
+        dispatch(postUser(input))
         setInput({
             name: "",
             lastname: "",
@@ -60,7 +64,8 @@ const CreateUsers = () => {
         <div>
             <form onSubmit={e => handleSubmit(e)}>
                 <div>
-                    <h1>Update your info</h1>
+                    <h1>Create a account</h1>
+                    <h3>it's easy and fast.</h3>
                 </div>
                 <div>
                     <label>Name:</label> 
@@ -127,7 +132,7 @@ const CreateUsers = () => {
                     </select>
                 </div>
                 <div>
-                     <label>technologies:</label> 
+                     <label>Technologies:</label> 
                     <select onChange={e => handleSelectTechnologies(e)}>
                     <option value='javascript'>Javascript</option>
                     <option value='java'>Java</option>
@@ -138,8 +143,9 @@ const CreateUsers = () => {
                     
                 </div>
                <div>
-                    <button type='submit'>Finish</button>
+                    <button type='submit'>Register</button>
                </div>
+                    <button to='/home'>Do you already have an account?</button>
             </form>
         </div>
     )
