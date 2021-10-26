@@ -1,14 +1,14 @@
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Login from "./components/login";
-import Home from "./components/Home";
-import LandingPage from './components/LandingPage';
-import NavBar from "./components/NavBar/NavBar"
+import Login from "./components/login/index";
+import Home from "./components/Home/Home";
+import LandingPage from './components/LandingPage/LandingPage';
 import CreateUsers from "./components/CreateUsers/CreateUsers";
+
 function App() {
   return (
     <Router>
-      <NavBar />
+
       <Switch>
         <Route exact path="/login" component={Login} />
         <Route exact path="/home" component={Home} />
