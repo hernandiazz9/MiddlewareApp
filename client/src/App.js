@@ -4,6 +4,7 @@ import Login from "./components/login";
 import Home from "./components/Home";
 import LandingPage from './components/LandingPage';
 import NavBar from "./components/NavBar/NavBar"
+import CreateUsers from "./components/CreateUsers/CreateUsers";
 function App() {
   return (
     <Router>
@@ -12,6 +13,7 @@ function App() {
         <Route exact path="/login" component={Login} />
         <Route exact path="/home" component={Home} />
         <Route exact path="/" component={LandingPage} />
+        <Route exact path="/createuser" component={CreateUsers} />
         {/* <RutaPrivada exact path="/proyectos" component={Proyectos} /> */}
       </Switch>
     </Router>
