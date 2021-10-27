@@ -1,19 +1,18 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { postUser } from '../../redux/actions';
+import { getLanguages, getTechnologies, postUser } from '../../redux/actions';
 import styles from './CreateUsers.module.css';
  
 
 const CreateUsers = () => {
     const dispatch = useDispatch();
-    const languages = useSelector(state => state.language);
+    const languages = useSelector(state => state.languages);
     const technologies = useSelector(state => state.technologies);
     const [input, setInput] = useState ({
         name: "",
         lastname: "",
         gmail: "",
         github: "",
-        photo: "",
         gender: "",
         phone: "",
         languages: [],
@@ -41,6 +40,7 @@ const CreateUsers = () => {
             technologies: [...input.technologies, e.target.value]
         })
     };
+    console.log(input)
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -50,13 +50,17 @@ const CreateUsers = () => {
             lastname: "",
             gmail: "",
             github: "",
-            photo: "",
             gender: "",
             phone: "",
             languages: [],
             technologies: []
         })
     };
+
+    useEffect(() => {
+        dispatch(getLanguages());
+        dispatch(getTechnologies());
+    }, [dispatch])
 
     return (
         <div>   
@@ -117,19 +121,21 @@ const CreateUsers = () => {
                 <div>
                     <label>Languages:</label> 
                     <select onChange={e => handleSelectLanguages(e)}>
-                    <option value='english'>English</option>
-                    <option value='spanish'>Spanish</option>
-                    <option value='other'>Other</option>
+                    {languages.map(el => {
+                        return (
+                            <option key={el._id} value={el.name}>{el.name}</option>
+                        )
+                    })};
                     </select>
                 </div>
                 <div>
                      <label>Technologies:</label> 
                     <select onChange={e => handleSelectTechnologies(e)}>
-                    <option value='javascript'>Javascript</option>
-                    <option value='java'>Java</option>
-                    <option value='phyton'>Phyton</option>
-                    <option value='c++'>C++</option>
-                    <option value='c'>C</option>
+                    {technologies.map(el => {
+                        return (
+                            <option key={el._id} value={el.name}>{el.name}</option>
+                        )
+                    })};
                     </select>
                     
                 </div>
