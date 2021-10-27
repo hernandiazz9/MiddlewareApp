@@ -5,6 +5,9 @@ const { Juniors,
     Publication,
     Admins } = require ('../../models/index')
 
+
+
+
 const getAllJuniors = async (req, res) => {
     try{ 
         const allJuniors = await Juniors.find();
@@ -22,7 +25,7 @@ const postJuniorsProfile = async (req, res) => {
         const technologiesGet = await Technologies.find({name: technologies})
         const languagesGet = await Languages.find({name: languages})
 
-        const juniorsCreate = await Juniors.findOneOrCreate({
+        const juniorsCreate = await Junior.create({
             name: name,
             lastname: lastname,
             gmail:gmail,

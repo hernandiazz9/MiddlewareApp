@@ -80,3 +80,25 @@ export function postUser(payload) {
     return response;
   }
 };
+
+export function getLanguages(payload){
+  return async function(dispatch) {
+    try {
+      const json = await axios.get('http://localhost:3001/languages');
+      return dispatch( {type: 'GET_LANGUAGES', payload: json.data})
+    } catch (error) {
+      
+    }
+  }
+};
+
+export function getTechnologies(payload){
+  return async function(dispatch) {
+    try {
+      const json = await axios.get('http://localhost:3001/technologies');
+      return dispatch( {type: 'GET_TECHNOLOGIES', payload: json.data})
+    } catch (error) {
+      
+    }
+  }
+};

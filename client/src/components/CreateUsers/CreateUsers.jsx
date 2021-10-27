@@ -1,10 +1,13 @@
 import React, {useState} from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { postUser } from '../../redux/actions';
+import styles from './CreateUsers.module.css';
  
 
 const CreateUsers = () => {
     const dispatch = useDispatch();
+    const languages = useSelector(state => state.language);
+    const technologies = useSelector(state => state.technologies);
     const [input, setInput] = useState ({
         name: "",
         lastname: "",
@@ -56,12 +59,13 @@ const CreateUsers = () => {
     };
 
     return (
-        <div>
-            <form onSubmit={e => handleSubmit(e)}>
+        <div>   
+                 <h1 >Update your profile</h1>
                 <div>
-                    <h1>Your profile</h1>
-                    <h3>it's easy and fast.</h3>
+                    <img className={styles.user} src='https://dthezntil550i.cloudfront.net/f4/latest/f41908291942413280009640715/1280_960/1b2d9510-d66d-43a2-971a-cfcbb600e7fe.png' alt='img' />
                 </div>
+
+            <form onSubmit={e => handleSubmit(e)}>
                 <div>
                     <label>Name:</label> 
                     <input type='text'
@@ -91,14 +95,6 @@ const CreateUsers = () => {
                     <input type='text'
                     value={input.github}
                     name='github'
-                    onChange={handleChange}
-                    />
-                </div>
-                <div>
-                    <label>Photo:</label> 
-                    <input type='text'
-                    value={input.photo}
-                    name='photo'
                     onChange={handleChange}
                     />
                 </div>
