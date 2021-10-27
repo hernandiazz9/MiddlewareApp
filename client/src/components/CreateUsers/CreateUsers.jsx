@@ -1,12 +1,10 @@
 import React, {useState} from 'react'
 import { useDispatch } from 'react-redux';
-import {useHistory} from 'react-router-dom'
 import { postUser } from '../../redux/actions';
  
 
 const CreateUsers = () => {
     const dispatch = useDispatch();
-    const history = useHistory();
     const [input, setInput] = useState ({
         name: "",
         lastname: "",
