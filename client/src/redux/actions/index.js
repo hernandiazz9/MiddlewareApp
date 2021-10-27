@@ -1,5 +1,6 @@
 import { LOGIN_OKEY, LOGOUT_OKEY, LOGIN_GOOGLE, LOGIN_GUITHUB } from "../types";
-import axios from 'axios';
+import axios from "axios";
+import clienteAxios from "../../components/config/clienteAxios";
 
 import { auth } from "../../firebaseConfig";
 import {
@@ -17,8 +18,9 @@ export const loginUserAction = (provider) => {
     try {
       if (provider === "google") {
         await signInWithPopup(auth, googleProvider).then((user) =>
-          dispatch(loginOkey(user))
+        await clienteAxios.post('/')
         );
+        dispatch(loginOkey(user))
       } else if (provider === "guithub") {
         await signInWithPopup(auth, guithubProvider).then((user) =>
           dispatch(loginOkey(user))
@@ -74,10 +76,11 @@ export const logOutOkey = () => ({
 //  });
 
 export function postUser(payload) {
-  return async function(dispatch) {
-    const response = await axios.post('http://localhost:3001/juniors', payload)
-    console.log(response)
+  return async function (dispatch) {
+    const response = await clienteAxios.post("/juniors", payload);
+    console.log(response);
     return response;
+<<<<<<< HEAD
   }
 };
 
@@ -102,3 +105,7 @@ export function getTechnologies(payload){
     }
   }
 };
+=======
+  };
+}
+>>>>>>> main
