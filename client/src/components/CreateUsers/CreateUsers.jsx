@@ -41,8 +41,6 @@ const CreateUsers = () => {
         })
     };
 
-    console.log(input)
-
     function handleSubmit(e) {
         e.preventDefault();
         dispatch(postUser(input))
@@ -57,14 +55,13 @@ const CreateUsers = () => {
             languages: [],
             technologies: []
         })
-        history.push('/home')
     };
 
     return (
         <div>
             <form onSubmit={e => handleSubmit(e)}>
                 <div>
-                    <h1>Create a account</h1>
+                    <h1>Your profile</h1>
                     <h3>it's easy and fast.</h3>
                 </div>
                 <div>
@@ -144,8 +141,7 @@ const CreateUsers = () => {
                 </div>
                <div>
                     <button type='submit'>Register</button>
-               </div>
-                    <button to='/home'>Do you already have an account?</button>
+               </div> 
             </form>
         </div>
     )
