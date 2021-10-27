@@ -33,7 +33,7 @@ const guithubProvider = new GithubAuthProvider();
  // };
 //};
 //
-=======
+
 export const loginUserAction = (provider) => {
   return async (dispatch) => {
     try {

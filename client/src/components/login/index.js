@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
-//  loginUserAction,
+  loginUserAction,
   loginOkey,
   logOutUserAction,
 } from "../../redux/actions";
@@ -29,7 +29,13 @@ const Login = () => {
     <div className="container-login">
       <div className="content">
         <h2>Para Ingresar por favor Inicia Sesión</h2>
-       
+        <button onClick={() => dispatch(loginUserAction("google"))}>
+          Google
+        </button>
+
+        <button onClick={() => dispatch(loginUserAction("guithub"))}>
+          Guithub
+        </button>
       </div>
     </div>
   );
