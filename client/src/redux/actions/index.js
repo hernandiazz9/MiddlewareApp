@@ -1,4 +1,5 @@
 import { LOGIN_OKEY, LOGOUT_OKEY, LOGIN_GOOGLE, LOGIN_GUITHUB } from "../types";
+
 import clienteAxios from "../../components/config/clienteAxios";
 
 import { auth } from "../../firebaseConfig";
@@ -11,6 +12,7 @@ import {
 
 const googleProvider = new GoogleAuthProvider();
 const guithubProvider = new GithubAuthProvider();
+
 
 //export const loginUserAction = (provider) => {
  // return async (dispatch) => {
@@ -31,6 +33,25 @@ const guithubProvider = new GithubAuthProvider();
  // };
 //};
 //
+=======
+export const loginUserAction = (provider) => {
+  return async (dispatch) => {
+    try {
+      if (provider === "google") {
+        await signInWithPopup(auth, googleProvider).then((user) =>
+        await clienteAxios.post('/')
+        );
+        dispatch(loginOkey(user))
+      } else if (provider === "guithub") {
+        await signInWithPopup(auth, guithubProvider).then((user) =>
+          dispatch(loginOkey(user))
+        );
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
 
 export const loginOkey = (user) => ({
   type: LOGIN_OKEY,
