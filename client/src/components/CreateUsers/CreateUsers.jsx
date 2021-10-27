@@ -138,7 +138,7 @@ const CreateUsers = () => {
                     
                 </div>
                <div>
-                    <button type='submit'>Register</button>
+                    <button type='submit'>Update</button>
                </div> 
             </form>
         </div>
