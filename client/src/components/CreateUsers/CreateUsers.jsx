@@ -26,6 +26,14 @@ const CreateUsers = () => {
             [e.target.name] : e.target.value
         })
     };
+
+    function handleReset(e) {
+        setInput({
+            ...input,
+            languages: [],
+            technologies: []
+        })
+    };
     
 
     function handleSelectLanguages(e) {
@@ -137,6 +145,7 @@ const CreateUsers = () => {
                         )
                     })};
                     </select>
+                     <ul><li>{input.languages.map(el => el + ', ')}</li></ul>   
                 </div>
                 <div>
                      <label>Technologies:</label> 
@@ -147,12 +156,13 @@ const CreateUsers = () => {
                         )
                     })};
                     </select>
-                    
+                    <ul><li>{input.technologies.map(el => el + ', ')}</li></ul> 
                 </div>
                <div>
                     <button type='submit'>Update</button>
                </div> 
             </form>
+            <button onClick={e => handleReset(e)}>Reset</button> 
         </div>
     )
 }
