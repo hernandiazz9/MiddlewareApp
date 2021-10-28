@@ -11,35 +11,6 @@ import {
 const googleProvider = new GoogleAuthProvider();
 const guithubProvider = new GithubAuthProvider();
 
-<<<<<<< HEAD
-
-//export const loginUserAction = (provider) => {
- // return async (dispatch) => {
- //   try {
- ////     if (provider === "google") {
-  //      await signInWithPopup(auth, googleProvider).then((user) =>
-   //     await clienteAxios.post('/')
-  //      );
-  //      dispatch(loginOkey(user))
-  //    } else if (provider === "guithub") {
-  //      await signInWithPopup(auth, guithubProvider).then((user) =>
-  //        dispatch(loginOkey(user))
-  //      );
- //     }
- //   } catch (e) {
- //     console.log(e);
- //   }
- // };
-//};
-//
-
-export const loginUserAction = (provider) => {
-  return async (dispatch) => {
-    try {
-      if (provider === "google") {
-        await signInWithPopup(auth, googleProvider).then((user) =>
-        dispatch(loginOkey(user)))
-=======
 export const loginUserAction = (provider, userType) => {
   return async (dispatch) => {
     try {
@@ -57,7 +28,6 @@ export const loginUserAction = (provider, userType) => {
           dispatch(loginOkey(user));
           // });
         });
->>>>>>> main
       } else if (provider === "guithub") {
         await signInWithPopup(auth, guithubProvider).then((userProvider) => {
           const { uuid, email, displayName, photoURL } = userProvider.user;

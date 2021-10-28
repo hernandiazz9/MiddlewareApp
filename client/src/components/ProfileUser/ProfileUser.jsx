@@ -1,24 +1,24 @@
 import React, {useEffect, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { getLanguages, getTechnologies, postUser } from '../../redux/actions';
-import styles from './CreateUsers.module.css';
+import { getLanguages, getTechnologies, getUserAction, postUser } from '../../redux/actions';
+import styles from './ProfileUser.module.css';
  
 
-const CreateUsers = () => {
+const ProfileUser = () => {
     const dispatch = useDispatch();
     const languages = useSelector(state => state.languages);
     const technologies = useSelector(state => state.technologies);
+    const users = useSelector(state => state.user);
     const [input, setInput] = useState ({
-        name: "",
         lastname: "",
         description: "",
-        gmail: "",
         github: "",
         gender: "",
         phone: "",
         languages: [],
         technologies: []
     })
+
 
     function handleChange(e) {
         setInput({
@@ -49,16 +49,14 @@ const CreateUsers = () => {
             technologies: [...input.technologies, e.target.value]
         })
     };
-    console.log(input)
+    
 
     function handleSubmit(e) {
         e.preventDefault();
         dispatch(postUser(input))
         setInput({
-            name: "",
             lastname: "",
             description: "",
-            gmail: "",
             github: "",
             gender: "",
             phone: "",
@@ -67,27 +65,35 @@ const CreateUsers = () => {
         })
     };
 
+    const user = {
+        name: 'Maximiliano',
+        idUser: 1,
+        email: 'elquememandogoogle@gmail.com',
+        photo: 'https://dthezntil550i.cloudfront.net/f4/latest/f41908291942413280009640715/1280_960/1b2d9510-d66d-43a2-971a-cfcbb600e7fe.png',
+        userType: 'programadorJR'
+    };
+
     useEffect(() => {
         dispatch(getLanguages());
         dispatch(getTechnologies());
     }, [dispatch])
+   
 
     return (
         <div>   
-                 <h1 >Update your profile</h1>
+                 <h1 >Your profile</h1>
                 <div>
-                    <img className={styles.user} src='https://dthezntil550i.cloudfront.net/f4/latest/f41908291942413280009640715/1280_960/1b2d9510-d66d-43a2-971a-cfcbb600e7fe.png' alt='img' />
+                    <img className={styles.user} src={user.photo} alt='img' />
+                </div>
+                <div>
+                    <label>Name: {user.name}</label> 
+                </div>
+                <div>
+                    <label>Gmail: {user.email}</label> 
                 </div>
 
             <form onSubmit={e => handleSubmit(e)}>
-                <div>
-                    <label>Name:</label> 
-                    <input type='text'
-                    value={input.name}
-                    name='name'
-                    onChange={handleChange}
-                    />
-                </div>
+               
                 <div>
                     <label>Lastname:</label> 
                     <input type='text'
@@ -101,14 +107,6 @@ const CreateUsers = () => {
                     <input type='text'
                     value={input.description}
                     name='description'
-                    onChange={handleChange}
-                    />
-                </div>
-                <div>
-                    <label>Gmail:</label> 
-                    <input type='text'
-                    value={input.gmail}
-                    name='gmail'
                     onChange={handleChange}
                     />
                 </div>
@@ -167,4 +165,4 @@ const CreateUsers = () => {
     )
 }
 
-export default CreateUsers;
+export default ProfileUser;
