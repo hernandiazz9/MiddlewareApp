@@ -114,6 +114,28 @@ export function postUser(payload) {
   }
 };
 
+export function getLanguages(payload){
+  return async function(dispatch) {
+    try {
+      const json = await clienteAxios.get('/languages');
+      return dispatch( {type: 'GET_LANGUAGES', payload: json.data})
+    } catch (error) {
+      
+    }
+  }
+};
+
+export function getTechnologies(payload){
+  return async function(dispatch) {
+    try {
+      const json = await clienteAxios.get('/technologies');
+      return dispatch( {type: 'GET_TECHNOLOGIES', payload: json.data})
+    } catch (error) {
+      
+    }
+  }
+};
+
 export const getCompanyDetails = (id) => {
   return async function (dispatch) {
     try {
@@ -125,5 +147,6 @@ export const getCompanyDetails = (id) => {
     } catch (e) {
       console.log(e);
     }
-  };
+  }
 };
+
