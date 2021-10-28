@@ -11,6 +11,7 @@ const CreateUsers = () => {
     const [input, setInput] = useState ({
         name: "",
         lastname: "",
+        description: "",
         gmail: "",
         github: "",
         gender: "",
@@ -48,6 +49,7 @@ const CreateUsers = () => {
         setInput({
             name: "",
             lastname: "",
+            description: "",
             gmail: "",
             github: "",
             gender: "",
@@ -83,6 +85,14 @@ const CreateUsers = () => {
                     <input type='text'
                     value={input.lastname}
                     name='lastname'
+                    onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <label>Description:</label> 
+                    <input type='text'
+                    value={input.description}
+                    name='description'
                     onChange={handleChange}
                     />
                 </div>
