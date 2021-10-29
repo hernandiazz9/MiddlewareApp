@@ -81,12 +81,12 @@ const ProfileUser = () => {
 
     return (
         <div>   
-                 <h1 >Your profile</h1>
+                 <h1 >Tu Perfil</h1>
                 <div>
                     <img className={styles.user} src={user.photo} alt='img' />
                 </div>
                 <div>
-                    <label>Name: {user.name}</label> 
+                    <label>Nombre: {user.name}</label> 
                 </div>
                 <div>
                     <label>Gmail: {user.email}</label> 
@@ -95,7 +95,7 @@ const ProfileUser = () => {
             <form onSubmit={e => handleSubmit(e)}>
                
                 <div>
-                    <label>Lastname:</label> 
+                    <label>Apellido:</label> 
                     <input type='text'
                     value={input.lastname}
                     name='lastname'
@@ -103,7 +103,7 @@ const ProfileUser = () => {
                     />
                 </div>
                 <div>
-                    <label>Description:</label> 
+                    <label>Sobre mi:</label> 
                     <input type='text'
                     value={input.description}
                     name='description'
@@ -119,7 +119,7 @@ const ProfileUser = () => {
                     />
                 </div>
                 <div>
-                    <label>Gender:</label> 
+                    <label>Género:</label> 
                     <input type='text'
                     value={input.gender}
                     name='gender'
@@ -127,7 +127,7 @@ const ProfileUser = () => {
                     />
                 </div>
                 <div>
-                    <label>Phone:</label> 
+                    <label>Celular:</label> 
                     <input type='text'
                     value={input.phone}
                     name='phone'
@@ -135,7 +135,7 @@ const ProfileUser = () => {
                     />
                 </div>
                 <div>
-                    <label>Languages:</label> 
+                    <label>Idiomas:</label> 
                     <select onChange={e => handleSelectLanguages(e)}>
                     {languages.map(el => {
                         return (
@@ -146,7 +146,7 @@ const ProfileUser = () => {
                      <ul><li>{input.languages.map(el => el + ', ')}</li></ul>   
                 </div>
                 <div>
-                     <label>Technologies:</label> 
+                     <label>Tecnologías:</label> 
                     <select onChange={e => handleSelectTechnologies(e)}>
                     {technologies.map(el => {
                         return (
@@ -157,10 +157,10 @@ const ProfileUser = () => {
                     <ul><li>{input.technologies.map(el => el + ', ')}</li></ul> 
                 </div>
                <div>
-                    <button type='submit'>Update</button>
+                    <button type='submit'>Actualizar</button>
                </div> 
             </form>
-            <button onClick={e => handleReset(e)}>Reset</button> 
+            <button onClick={e => handleReset(e)}>Reiniciar</button> 
         </div>
     )
 }
