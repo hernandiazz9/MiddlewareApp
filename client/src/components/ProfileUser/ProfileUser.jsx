@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import {Link, useHistory} from 'react-router-dom';
+import { useDispatch, useSelector} from 'react-redux';
+import {Link, useHistory, useParams} from 'react-router-dom';
 import { getLanguages, getTechnologies, putJuniors, } from '../../redux/actions';
 import styles from './ProfileUser.module.css';
  
 
 const ProfileUser = () => {
     const dispatch = useDispatch();
+    const {id} = useParams();
     const history = useHistory();
     const languages = useSelector(state => state.languages);
     const technologies = useSelector(state => state.technologies);
@@ -55,7 +56,7 @@ const ProfileUser = () => {
 
     function handleSubmit(e) {
         e.preventDefault();
-        dispatch(putJuniors(input))
+        dispatch(putJuniors(id, input))
         setInput({
             lastname: "",
             description: "",
@@ -69,13 +70,6 @@ const ProfileUser = () => {
         alert('Perfil Actualizado')
     };
 
-    const user = {
-        name: 'Maximiliano',
-        idUser: 1,
-        email: 'elquememandogoogle@gmail.com',
-        photo: 'https://dthezntil550i.cloudfront.net/f4/latest/f41908291942413280009640715/1280_960/1b2d9510-d66d-43a2-971a-cfcbb600e7fe.png',
-        userType: 'programadorJR'
-    };
 
     useEffect(() => {
         dispatch(getLanguages());
@@ -87,19 +81,18 @@ const ProfileUser = () => {
         <div>   
             <Link className="btn btn-outline-dark me-2" to='/home' >Volver al inicio</Link>
                  <h1 >Tu Perfil</h1>
-            <div class="card" >
+            <div className="card" >
             <img className={styles.user} src={users.photograph} alt='img' />
-            <div class="card-body">
-                <h5 class="card-title">Nombre: {users.name}</h5>
-                <p class="card-text">Sobre mi: {input.description}</p>
-                <p class="card-text">Github: {input.github}</p>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">Email: {users.gmail}</li>
-            </ul>
-            <div class="card-body">
-                <a href="#" class="card-link">Linkedin</a>
-                <a href="#" class="card-link">Github</a>
+            <div className="card-body">
+                <h5 className="card-title">Nombre: {users.name}</h5>
+                <p className="card-text">Apellido: {input.lastname}</p>
+                <p className="card-text">Sobre mi: {input.description}</p>
+                <p className="card-text">Email: {users.gmail}</p>
+                <p className="card-text">Github: {input.github}</p>
+                <p className="card-text">Género: {input.gender}</p>
+                <p className="card-text">Celular: {input.phone}</p>
+                <p className="card-text">Idiomas: {input.languages + ',  '}</p>
+                <p className="card-text">Tecnologías: {input.technologies + ',  '}</p>
             </div>
             </div>
 
@@ -152,8 +145,7 @@ const ProfileUser = () => {
                             <option key={el._id} value={el.name}>{el.name}</option>
                         )
                     })};
-                    </select>
-                     <ul><li>{input.languages.map(el => el + ', ')}</li></ul>   
+                    </select>  
                 </div>
                 <div>
                      <label>Tecnologías:</label> 
@@ -164,7 +156,6 @@ const ProfileUser = () => {
                         )
                     })};
                     </select>
-                    <ul><li>{input.technologies.map(el => el + ', ')}</li></ul> 
                 </div>
                <div>
                     <button type='submit'>Actualizar</button>
