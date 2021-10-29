@@ -161,15 +161,6 @@ export function getJuniors(payload) {
 	};
 }
 
-export function postUser(payload) {
-	return async function (dispatch) {
-		const response = await clienteAxios.post(
-			'http://localhost:3001/juniors',
-			payload
-		);
-		return response;
-	};
-}
 
 export function putJuniors(id) {
 	return async function () {
