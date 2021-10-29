@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import { getLanguages, getTechnologies, putJuniors } from '../../redux/actions';
 import styles from './ProfileUser.module.css';
 

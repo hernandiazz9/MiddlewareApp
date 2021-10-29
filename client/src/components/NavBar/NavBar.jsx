@@ -6,8 +6,6 @@ import styles from "./NavBar.module.css";
 function NavBar() {
 	const dispatch = useDispatch()
 	const { user } = useSelector((state) => state);
-	const junior = useSelector((state) => state.companies);
-	console.log(junior)
 
 
 	return (
