@@ -1,8 +1,10 @@
-// import { useState } from "react";
+import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebaseConfig";
+import { getJuniors, getCompanies } from "../../redux/actions";
+
 import {
   loginOkey,
   logOutUserAction,
@@ -11,6 +13,7 @@ import {
 
 import { Search } from "../Search/Search";
 import NavBar from "../NavBar/NavBar";
+import { CardsCompanies } from "../CardsCompanies/CardsCompanies";
 import "./Home.css";
 
 const Home = () => {
@@ -18,6 +21,10 @@ const Home = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  useEffect(() => {
+    dispatch(getJuniors());
+    dispatch(getCompanies());
+  },[]);
   onAuthStateChanged(auth, (userFirebase) => {
     if (userFirebase) {
       if (user) return;
@@ -27,10 +34,19 @@ const Home = () => {
     }
   });
 
+  const companies = useSelector((state) => state.companies);
+
   return (
-    <div className="containerhome">
-      <NavBar />
-      <Search />
+    <div className='containerhome'>
+            <NavBar />
+            <div className='searchcards'>
+                <div className='search'>
+                    <Search />
+                </div>
+                <div className='cards'>
+                    <CardsCompanies arrayCompanies={companies} />
+                </div>
+            </div>
     </div>
   );
 };
