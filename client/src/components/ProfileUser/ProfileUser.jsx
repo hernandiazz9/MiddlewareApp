@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { getLanguages, getTechnologies, getUserAction, postUser } from '../../redux/actions';
+import { getLanguages, getTechnologies, updateJunior } from '../../redux/actions';
 import styles from './ProfileUser.module.css';
  
 
@@ -53,7 +53,7 @@ const ProfileUser = () => {
 
     function handleSubmit(e) {
         e.preventDefault();
-        dispatch(postUser(input))
+        dispatch(updateJunior(input))
         setInput({
             lastname: "",
             description: "",
@@ -93,7 +93,6 @@ const ProfileUser = () => {
                 </div>
 
             <form onSubmit={e => handleSubmit(e)}>
-               
                 <div>
                     <label>Apellido:</label> 
                     <input type='text'

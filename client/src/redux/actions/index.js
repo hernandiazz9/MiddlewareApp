@@ -115,10 +115,10 @@ export const logOutOkey = () => ({
   type: LOGOUT_OKEY,
 });
 
-export function postUser(payload) {
+export function updateJunior(payload) {
   return async function (dispatch) {
-    const response = await clienteAxios.post(
-      "http://localhost:3001/juniors",
+    const response = await clienteAxios.put(
+      "/juniors/:id",
       payload
     );
     console.log(response);
