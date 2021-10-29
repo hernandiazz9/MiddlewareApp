@@ -1,9 +1,8 @@
-import React, {useEffect, useState} from 'react'
-import { useDispatch, useSelector} from 'react-redux';
-import {Link, useHistory, useParams} from 'react-router-dom';
-import { getLanguages, getTechnologies, putJuniors, } from '../../redux/actions';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
+import { getLanguages, getTechnologies, putJuniors } from '../../redux/actions';
 import styles from './ProfileUser.module.css';
- 
 
 const ProfileUser = () => {
     const dispatch = useDispatch();
@@ -22,37 +21,50 @@ const ProfileUser = () => {
         technologies: []
     })
 
+	function handleChange(e) {
+		setInput({
+			...input,
+			[e.target.name]: e.target.value,
+		});
+	}
 
-    function handleChange(e) {
-        setInput({
-            ...input,
-            [e.target.name] : e.target.value
-        })
-    };
+	function handleReset(e) {
+		setInput({
+			...input,
+			languages: [],
+			technologies: [],
+		});
+	}
 
-    function handleReset(e) {
-        setInput({
-            ...input,
-            languages: [],
-            technologies: []
-        })
-    };
-    
+	function handleSelectLanguages(e) {
+		setInput({
+			...input,
+			languages: [...input.languages, e.target.value],
+		});
+	}
 
-    function handleSelectLanguages(e) {
-        setInput({
-            ...input,
-            languages: [...input.languages, e.target.value]
-        })
-    };
+	function handleSelectTechnologies(e) {
+		setInput({
+			...input,
+			technologies: [...input.technologies, e.target.value],
+		});
+	}
 
-    function handleSelectTechnologies(e) {
-        setInput({
-            ...input,
-            technologies: [...input.technologies, e.target.value]
-        })
-    };
-    
+	function handleSubmit(e) {
+		e.preventDefault();
+		dispatch(putJuniors(users._id, input));
+		setInput({
+			lastname: '',
+			description: '',
+			github: '',
+			gender: '',
+			phone: '',
+			languages: [],
+			technologies: [],
+		});
+		history.push('/home');
+		alert('Perfil Actualizado');
+	}
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -71,11 +83,10 @@ const ProfileUser = () => {
     };
 
 
-    useEffect(() => {
-        dispatch(getLanguages());
-        dispatch(getTechnologies());
-    }, [dispatch])
-   
+	useEffect(() => {
+		dispatch(getLanguages());
+		dispatch(getTechnologies());
+	}, [dispatch]);
 
     return (
         <div>   
