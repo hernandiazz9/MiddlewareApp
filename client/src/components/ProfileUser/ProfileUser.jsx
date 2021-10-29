@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { getLanguages, getTechnologies, updateJunior } from '../../redux/actions';
+import { getLanguages, getTechnologies, putJuniors, } from '../../redux/actions';
 import styles from './ProfileUser.module.css';
  
 
@@ -53,7 +53,7 @@ const ProfileUser = () => {
 
     function handleSubmit(e) {
         e.preventDefault();
-        dispatch(updateJunior(input))
+        dispatch(putJuniors(input))
         setInput({
             lastname: "",
             description: "",
