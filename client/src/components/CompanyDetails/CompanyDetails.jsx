@@ -39,15 +39,22 @@ export default function CompanyDetail() {
   };*/
 
 	return (
-		<div>
+		<div className='container-fluid '>
 			<div>
-				<div>
+				<Link to='/home/companies'>
+					<button className='btn btn-block btn-dark btn-outline-light'>
+						Volver
+					</button>
+				</Link>
+			</div>
+			<div className='row align-items-center justify-content-center'>
+				<div className='col-5 text-center'>
 					<h1>{companies.name}</h1>
 					<img
 						src={companies.photograph}
 						alt='Imagen no encontrada'
-						width='100px'
-						heigth='80px'
+						width='200px'
+						heigth='200px'
 					></img>
 					<h3>{companies.webpage}</h3>
 					<h3>{companies.gmail}</h3>
@@ -56,14 +63,6 @@ export default function CompanyDetail() {
 					<h3>{companies.city}</h3>
 					<h3>{companies.description}</h3>
 				</div>
-			</div>
-
-			<div>
-				<Link to='/home/companies'>
-					<button className='btn btn-block btn-dark btn-outline-light'>
-						Volver
-					</button>
-				</Link>
 			</div>
 		</div>
 	);

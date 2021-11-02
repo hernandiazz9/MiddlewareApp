@@ -10,7 +10,7 @@ function NavBar() {
 	console.log(junior);
 
 	return (
-		<nav className='navbar navbar-expand-lg navbar-dark bg-dark bg-opacity-100'>
+		<nav className='navbar navbar-expand-lg navbar-dark bg-dark bg-opacity-100 px-3'>
 			<div className='container-fluid'>
 				<Link
 					className={`navbar-brand text-primary ${styles.logo}`}
@@ -30,7 +30,7 @@ function NavBar() {
 					<span className='navbar-toggler-icon'></span>
 				</button>
 				<div className='collapse navbar-collapse' id='navbarSupportedContent'>
-					<ul className='navbar-nav mx-auto '>
+					<ul className='navbar-nav ms-auto '>
 						{user && user.type === 'junior' ? (
 							<li className='nav-item p-2 '>
 								<a className='nav-link' aria-current='page' href='#'>
