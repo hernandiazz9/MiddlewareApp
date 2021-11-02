@@ -12,7 +12,10 @@ function NavBar() {
 	return (
 		<nav className='navbar navbar-expand-lg navbar-dark bg-dark bg-opacity-100'>
 			<div className='container-fluid'>
-				<Link className={`navbar-brand text-primary ${styles.logo}`} to='/home'>
+				<Link
+					className={`navbar-brand text-primary ${styles.logo}`}
+					to='/home/companies'
+				>
 					Middleware
 				</Link>
 				<button
@@ -46,20 +49,20 @@ function NavBar() {
 							</Link>
 						</li>
 						<li className={`nav-item  ${styles.items}`}>
-							<a className='nav-link fw-normal ' href='#'>
-								Mis empleos
-							</a>
+							<Link className='nav-link fw-normal ' to={'/home/empleos'}>
+								Empleos
+							</Link>
 						</li>
-						<li className={`nav-item  ${styles.items}`}>
+						{/* 	<li className={`nav-item  ${styles.items}`}>
 							<a className='nav-link fw-normal ' href='#'>
 								Mis postulaciones
 							</a>
-						</li>
-						<li className={`nav-item  ${styles.items}`}>
+						</li> */}
+						{/* 		<li className={`nav-item  ${styles.items}`}>
 							<a className='nav-link fw-normal ' href='#'>
 								Tips
 							</a>
-						</li>
+						</li> */}
 						<li className={`nav-item dropdown ${styles.items}`}>
 							<a
 								className='nav-link dropdown-toggle'
