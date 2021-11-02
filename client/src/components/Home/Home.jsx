@@ -10,6 +10,7 @@ import {
 	loginOkey,
 	logOutUserAction,
 	getUserAction,
+	sortJobsBy,
 } from '../../redux/actions';
 
 import { Search } from '../Search/Search';
@@ -32,6 +33,8 @@ const Home = () => {
 			dispatch(getJuniors());
 			dispatch(getCompanies());
 			dispatch(getTechnologies());
+			/* dispatch(sortJobsBy('premium')); */
+			/* 	dispatch(sortJobsBy('date')); */
 		}
 	}, [user]);
 
@@ -47,7 +50,7 @@ const Home = () => {
 	const companies = useSelector((state) => state.companies);
 	const juniors = useSelector((state) => state.juniors);
 
-	const jobs = useSelector((state) => state.jobs.data);
+	const jobs = useSelector((state) => state.jobs.filterData);
 
 	return (
 		<div className=''>
@@ -62,7 +65,7 @@ const Home = () => {
 					<div className=''>
 						<div className=''>
 							{/* 	<CardsCompanies arrayCompanies={companies} /> */}
-							{/* 	<CardsJuniors arrayJuniors={juniors} /> */}
+							{/* <CardsJuniors arrayJuniors={juniors} /> */}
 							<CardsJobs jobs={jobs} />
 						</div>
 					</div>

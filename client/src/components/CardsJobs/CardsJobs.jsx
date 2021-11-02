@@ -10,12 +10,31 @@ function CardsJobs({ jobs }) {
 			return 'Publicado Hoy';
 		} else if (days === 1) {
 			return 'Publicado hace un día';
-		} else {
+		} else if (days > 1 && days < 7) {
 			return `Publicado hace ${days} días`;
+		} else if (days === 7) {
+			return `Publicado hace una semana`;
+		} else if (days > 7 && days <= 14) {
+			return `Publicado hace más de una semana`;
+		} else if (days === 15) {
+			return `Publicado hace 2 semanas`;
+		} else if (days > 15 && days < 30) {
+			return `Publicado hace más de 2 semanas`;
+		} else {
+			return 'Publicado hace más de un mes';
+		}
+	}
+	function money(dollar, salary) {
+		if (!salary) {
+			return 'Sin especificar';
+		} else if (dollar) {
+			return `U$s${salary}`;
+		} else {
+			return `$${salary}`;
 		}
 	}
 	return (
-		<div className={s.container}>
+		<div className={s.cards}>
 			{jobs.map((j) => (
 				<div className={s.card}>
 					{j.country !== 'remote' ? (
@@ -23,9 +42,7 @@ function CardsJobs({ jobs }) {
 					) : (
 						<p className={s.country2}>{j.country}</p>
 					)}
-
 					<p className={s.date}>{calculateDate(j.date)}</p>
-
 					<div className={s.card_container_logo}>
 						<img className={s.card_logo} src={j.img} alt='' />
 					</div>
@@ -51,7 +68,7 @@ function CardsJobs({ jobs }) {
 								</div>
 								<div className={s.card_container_info_extra_salary}>
 									<p className={s.salary}>salario:</p>
-									{j.dollar ? <p>U$s{j.salary}</p> : <p>${j.salary}</p>}
+									<p className={s.textNone}>{money(j.dollar, j.salary)}</p>
 								</div>
 							</div>
 						</div>

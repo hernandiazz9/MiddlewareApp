@@ -1,25 +1,47 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-
+import { useDispatch, useSelector } from 'react-redux';
+import {
+	searchJobsByTitle,
+	filterJobsByCities,
+	filterJobsBySalaries,
+	filterJobsByTechs,
+	resetFilterJobs,
+	sortJobsBy,
+} from '../../redux/actions';
 import './Search.css';
 
 export const Search = () => {
 	const button = 'button';
-
+	const dispatch = useDispatch();
 	const options = useSelector((store) => store.technologies);
 
-	const handleInputChange = (e) => {};
+	const handleInputChange = (e) => {
+		dispatch(searchJobsByTitle(e.target.value));
+	};
 
-	const byTypeuser = (e) => {};
+	const byTypeSalary = (e) => {
+		dispatch(filterJobsBySalaries(e.target.value));
+	};
 
-	const byTypePublic = (e) => {};
-	const submit = (e) => {};
+	const byTecnology = (e) => {
+		let tech = e.target.value.toLowerCase();
+		dispatch(filterJobsByTechs(tech));
+	};
+	const byUbication = (e) => {
+		dispatch(filterJobsByCities(e.target.value));
+	};
 
-	const byTecnology = (e) => {};
-	const byUbication = (e) => {};
+	const handleReset = (e) => {
+		dispatch(resetFilterJobs());
+	};
+
+	const sortBy = (e) => {
+		dispatch(sortJobsBy(e.target.value));
+	};
+
 	return (
 		<div className='cont'>
-			<form onSubmit={submit}>
+			<form>
 				<div className='field'>
 					<input
 						type='text'
@@ -27,22 +49,18 @@ export const Search = () => {
 						onChange={handleInputChange}
 						placeholder='Realiza tu busqueda...'
 					/>
-					<input className={button} type='submit' value='Buscar' />
 				</div>
 			</form>
 			<div className='field2'>
-				<select className={button} name='typeUser' onChange={byTypeuser}>
-					<option value=''>Tipo de usuario:</option>
-					<option value='0'>Programador</option>
-					<option value='1'>Empresa</option>
-					<option value='2'>Administrador</option>
-				</select>
-
-				<select className={button} name='typePublic' onChange={byTypePublic}>
-					<option value=''>Tipo de Publicación:</option>
-					<option value='0'>Empleo</option>
-					<option value='1'>Proyectos</option>
-					<option value='2'>Guias, Tutoriales</option>
+				<select className={button} name='typePublic' onChange={byTypeSalary}>
+					<option disabled selected>
+						Rango Salarial:
+					</option>
+					<option value='0'>Menor a $50.000</option>
+					<option value='1'>Entre $50.000 y $100.000</option>
+					<option value='2'>Entre $101.000 y $150.000</option>
+					<option value='3'>Entre $151.000 y $200.000</option>
+					<option value='4'>Mayor de $200.000</option>
 				</select>
 
 				<select className={button} name='Technologies' onChange={byTecnology}>
@@ -54,13 +72,26 @@ export const Search = () => {
 					))}
 				</select>
 				<select name='ubicacion' className={button} onChange={byUbication}>
-					<option value=''>Ubicación:</option>
-					<option value='Cordova'>Cordoba</option>
-					<option value='Buenos Aires'>Buenos Aires</option>
-					<option value='Mendoza'>Mendoza</option>
-					<option value='Junin'>Junin</option>
+					<option disabled selected>
+						Ubicación:
+					</option>
+					<option value=''>Remoto</option>
+					<option value='cordoba'>Cordoba</option>
+					<option value='buenos aires'>Buenos Aires</option>
+					<option value='mendoza'>Mendoza</option>
+					<option value='junin'>Junin</option>
+				</select>
+				<select className={button} name='sort' onChange={sortBy}>
+					<option disabled selected>
+						Ordenar por:
+					</option>
+					<option value='premium'>Premium</option>
+					<option value='date'>Fecha</option>
 				</select>
 			</div>
+			<p className='clear' onClick={handleReset}>
+				Limpiar Filtros
+			</p>
 		</div>
 	);
 };

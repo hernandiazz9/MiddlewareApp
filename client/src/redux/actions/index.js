@@ -11,6 +11,13 @@ import {
 	GET_COMPANY_DETAILS,
 	GET_PUBLICATIONS,
 	GET_PUBLICATIONS_BY_ID,
+	SORT_JOBS_BY,
+	FILTER_JOBS_BY_COUNTRIES,
+	FILTER_JOBS_BY_CITIES,
+	FILTER_JOBS_BY_SALARIES,
+	FILTER_JOBS_BY_TECHS,
+	SEARCH_JOBS_BY_TITLE,
+	RESET_JOBS_FILTER,
 } from '../types';
 import clienteAxios from '../../components/config/clienteAxios';
 import { auth } from '../../firebaseConfig';
@@ -24,6 +31,7 @@ import tokenAuth from '../../components/config/token';
 /*LOGIN*/
 const googleProvider = new GoogleAuthProvider();
 const guithubProvider = new GithubAuthProvider();
+
 export const loginUserAction = (provider, userType) => {
 	return async (dispatch) => {
 		try {
@@ -227,5 +235,70 @@ export function deletePublications(id) {
 	return async function () {
 		const response = await clienteAxios.delete(`/publications${id}`);
 		return response;
+	};
+}
+
+/*JOBS*/
+
+export function sortJobsBy(payload) {
+	return async function (dispatch) {
+		dispatch({
+			type: SORT_JOBS_BY,
+			payload,
+		});
+	};
+}
+
+export function filterJobsByCountries(payload) {
+	return async function (dispatch) {
+		dispatch({
+			type: FILTER_JOBS_BY_COUNTRIES,
+			payload,
+		});
+	};
+}
+
+export function filterJobsByCities(payload) {
+	return async function (dispatch) {
+		dispatch({
+			type: FILTER_JOBS_BY_CITIES,
+			payload,
+		});
+	};
+}
+
+export function filterJobsBySalaries(payload) {
+	return async function (dispatch) {
+		dispatch({
+			type: FILTER_JOBS_BY_SALARIES,
+			payload,
+		});
+	};
+}
+
+export function filterJobsByTechs(payload) {
+	return async function (dispatch) {
+		dispatch({
+			type: FILTER_JOBS_BY_TECHS,
+			payload,
+		});
+	};
+}
+
+export function searchJobsByTitle(payload) {
+	return async function (dispatch) {
+		dispatch({
+			type: SEARCH_JOBS_BY_TITLE,
+			payload,
+		});
+	};
+}
+
+export function resetFilterJobs(payload) {
+	return async function (dispatch) {
+		dispatch({
+			type: RESET_JOBS_FILTER,
+			payload,
+		});
 	};
 }
