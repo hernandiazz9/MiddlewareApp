@@ -33,8 +33,6 @@ const Home = () => {
 			dispatch(getJuniors());
 			dispatch(getCompanies());
 			dispatch(getTechnologies());
-			/* dispatch(sortJobsBy('premium')); */
-			/* 	dispatch(sortJobsBy('date')); */
 		}
 	}, [user]);
 
