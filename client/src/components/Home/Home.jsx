@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../../firebaseConfig';
@@ -44,7 +44,7 @@ const Home = () => {
 			history.push('/');
 		}
 	});
-
+	const { tipo } = useParams();
 	const companies = useSelector((state) => state.companies);
 	const juniors = useSelector((state) => state.juniors);
 
@@ -54,17 +54,16 @@ const Home = () => {
 		<div className=''>
 			<NavBar />
 			<div className=''>
-				<div className=''>
-					<div className=''>
-						<Search />
-					</div>
-				</div>
+				<div className=''>{tipo && tipo === 'empleos' && <Search />}</div>
 				<div className=''>
 					<div className=''>
 						<div className=''>
-							{/* 	<CardsCompanies arrayCompanies={companies} /> */}
+							{tipo && tipo === 'companies' && (
+								<CardsCompanies arrayCompanies={companies} />
+							)}
+							{tipo && tipo === 'empleos' && <CardsJobs jobs={jobs} />}
 							{/* <CardsJuniors arrayJuniors={juniors} /> */}
-							<CardsJobs jobs={jobs} />
+							{/* 	<CardsJobs jobs={jobs} /> */}
 						</div>
 					</div>
 				</div>

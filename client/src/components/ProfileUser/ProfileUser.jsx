@@ -63,7 +63,10 @@ const ProfileUser = () => {
 
 	return user ? (
 		<div>
-			<Link className='btn btn-outline-dark ml-2 mt-2' to='/home'>
+			<Link
+				className='btn btn-block btn-dark btn-outline-light'
+				to='/home/companies'
+			>
 				Volver al inicio
 			</Link>
 			<div className='container mt-3'>
