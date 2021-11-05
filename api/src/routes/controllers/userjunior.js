@@ -33,8 +33,13 @@ const getAllJuniors = async (req, res) => {
 				.json({ auth: false, message: 'usuario no registrado' });
 		}
 
-		const allJuniors = await Juniors.find()
-		.populate([{ path: 'languages'},{ path: 'technologies'},{ path: 'softskills'}, { path: 'publications'}]);
+		const { page, limit } = req.query;
+    if(!limit) limit = 10;
+    if(!page) page = 1;
+
+		const allJuniors = await Juniors.paginate({},{
+		populate: ([{ path: 'languages'},{ path: 'technologies'},{ path: 'softskills'}, { path: 'publications'}]), page : page, limit: limit});
+
 		res.json(allJuniors);
 	} catch (error) {
 		res.status(404).json({ error: error.message });
