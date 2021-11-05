@@ -13,7 +13,12 @@ const jwt = require('jsonwebtoken');
 
 const getAllCompanies = async (req, res) => {
     try{
-    const allCompanies = await Company.find().populate('jobs');
+      const page = req.query.page || 1;
+      const limit = req.query.limit || 10;
+
+      const allCompanies = await Company.paginate({},{populate: [{path: 'jobs'}], page:page, limit:limit});
+    // Juniors.paginate({},{
+    //   populate: ([{ path: 'languages'},{ path: 'technologies'},{ path: 'softskills'}, { path: 'publications'}]), page : page, limit: limit});
     res.json(allCompanies);
     } catch (error) {
         res.status(404).json({ error: error.message });

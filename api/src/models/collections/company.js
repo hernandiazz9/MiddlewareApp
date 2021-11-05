@@ -1,5 +1,6 @@
 const { model } = require('mongoose');
 var mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate-v2');
 var Schema = mongoose.Schema;
 var ObjectIdSchema = Schema.ObjectId;
 var ObjectId = mongoose.Types.ObjectId;
@@ -76,6 +77,7 @@ const companySchema = new Schema({
     }]
 })
 
+companySchema.plugin(mongoosePaginate);
 // companySchema.plugin(require('mongoose-autopopulate'));
 
 module.exports = model('company', companySchema)

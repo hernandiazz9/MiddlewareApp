@@ -17,7 +17,7 @@ const jwt = require('jsonwebtoken');
 const getAllJuniors = async (req, res) => {
 	try {
 		const token = req.headers['x-auth-token'];
-		// console.log(req.headers, 'token');
+
 		if (!token) {
 			return res
 				.status(403)
@@ -33,9 +33,8 @@ const getAllJuniors = async (req, res) => {
 				.json({ auth: false, message: 'usuario no registrado' });
 		}
 
-		const { page, limit } = req.query;
-    if(!limit) limit = 10;
-    if(!page) page = 1;
+    const page = req.query.page || 1;
+    const limit = req.query.limit || 10;
 
 		const allJuniors = await Juniors.paginate({},{
 		populate: ([{ path: 'languages'},{ path: 'technologies'},{ path: 'softskills'}, { path: 'publications'}]), page : page, limit: limit});
