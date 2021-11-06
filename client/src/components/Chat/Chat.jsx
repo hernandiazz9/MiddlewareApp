@@ -1,4 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState, useEffect} from 'react'
+import { db } from '../../firebaseConfig'
+import { collection, getDocs, doc, onSnapshot } from "firebase/firestore";
 
 
 export default function Chat(){
@@ -6,7 +8,7 @@ export default function Chat(){
 	var [message, setMessage] = useState('')
 	var [state, setState] = useState({
 
-		message: [
+		messages: [
 	
 			// {id: 0, text: "Hola"},
 			// {id: 1, text: "Que tal?"}
@@ -14,32 +16,37 @@ export default function Chat(){
 
 	function onChangeState(e){
 		setMessage(e.target.value)
-		console.log(message)
 	}
 
 	function handleSubmit(e){
 		e.preventDefault()
-		const list = state.message
+		const list = state.messages
 		const newMessage = {
 			id: state.length,
 			text: message
 		}
 		list.push(newMessage)
-		setState({message: list})
+		setState({messages: list})
 		setMessage('')
 	}
 
-
-	useEffect(()=>{
-		window.firebase.database().ref('messages/').on('value', snap => {
-			const currentMessages = snap.val()
-			if(currentMessages !== null){
-				setState({
-					message: currentMessages
-				});
-			}
+	useEffect(async()=>{
+		
+		const querySnapshot = await getDocs(collection(db, "messages"));
+		var list = state.messages
+		querySnapshot.forEach((doc) => {
+			console.log(doc.data());
+			list.push(doc.data())
 		});
+		setState({
+			messages: list
+		})
+		console.log(state.messages, list)
 	}, []);
+
+	// const unsub = onSnapshot(doc(db, "messages", "SF"), (doc) => {
+	// 	console.log("Current data: ", doc.data());
+	// });
 
 	return (
 
@@ -49,7 +56,7 @@ export default function Chat(){
 
 			<ul>
 			{
-				state.message ? state.message.map(e => 
+				state.messages ? state.messages.map(e => 
 
 					<li key={e.id}>{e.text}</li>
 				) : <h1>Cargando...</h1>
