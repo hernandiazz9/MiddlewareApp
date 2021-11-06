@@ -12,6 +12,7 @@ import { useDispatch } from 'react-redux';
 import { getJuniors, getCompanies } from './redux/actions/index.js';
 import JuniorsDetail from './components/JuniorsDetails/JuniorsDetails';
 import CreatePublications from './components/CreatePublications/CreatePublications';
+import Chat from './components/Chat/Chat.jsx';
 function App() {
 	const token = localStorage.getItem('token');
 
@@ -44,6 +45,7 @@ function App() {
 				<Route exact path='/createpublications' component={CreatePublications}/>
 				<Route exact path='/publicaciones' component={Publications}/>
 				<Route path='/juniors/:id' component={JuniorsDetail} />
+				<Route path='/chat' component={Chat} />
 				{/* <RutaPrivada exact path="/proyectos" component={Proyectos} /> */}
 			</Switch>
 		</Router>
