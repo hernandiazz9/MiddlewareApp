@@ -1,52 +1,67 @@
 import React, {useState, useEffect} from 'react'
 import { db } from '../../firebaseConfig'
-import { collection, getDocs, doc, onSnapshot } from "firebase/firestore";
-
+import { collection, getDocs, getDoc, doc, onSnapshot, setDoc } from "firebase/firestore";
+import { useSelector } from 'react-redux'
 
 export default function Chat(){
+
+	const user = useSelector(state => state.user)
 
 	var [message, setMessage] = useState('')
 	var [state, setState] = useState({
 
-		messages: [
-	
-			// {id: 0, text: "Hola"},
-			// {id: 1, text: "Que tal?"}
-		]})
+		messages: []
+	})
 
 	function onChangeState(e){
 		setMessage(e.target.value)
 	}
 
-	function handleSubmit(e){
+	async function handleSubmit(e){
 		e.preventDefault()
-		const list = state.messages
+		if(message == '') return alert("No puedes enviar un mensaje vacio")
+		const list = !state.messages ? [] : state.messages
 		const newMessage = {
-			id: state.length,
+			id: !state.messages ? 0 : state.messages.length,
 			text: message
 		}
 		list.push(newMessage)
-		setState({messages: list})
 		setMessage('')
+
+		try{
+
+			await setDoc(doc(db, "messages", "H0woGYvUAyqYdn7wvTwr"), {
+				chat: list
+			});
+		}
+		catch(err){
+			console.log(err.message)
+		}
 	}
+
+	const unsub = onSnapshot(doc(db, "messages", "H0woGYvUAyqYdn7wvTwr"), (doc) => {
+		
+		if(state.messages && doc.data() !== undefined){
+
+			if(state.messages.length < doc.data().chat.length){
+				setState({messages: doc.data().chat});
+			}
+		}
+	});
 
 	useEffect(async()=>{
 		
-		const querySnapshot = await getDocs(collection(db, "messages"));
-		var list = state.messages
-		querySnapshot.forEach((doc) => {
-			console.log(doc.data());
-			list.push(doc.data())
-		});
+		const docRef = doc(db, "messages", "H0woGYvUAyqYdn7wvTwr");
+		const docSnap = await getDoc(docRef);
+		let list = docSnap.data()
+		console.log(docSnap.data())
+
 		setState({
-			messages: list
+			messages: docSnap.data() !== undefined ? docSnap.data().chat : []
 		})
-		console.log(state.messages, list)
 	}, []);
 
-	// const unsub = onSnapshot(doc(db, "messages", "SF"), (doc) => {
-	// 	console.log("Current data: ", doc.data());
-	// });
+	
 
 	return (
 
@@ -56,9 +71,9 @@ export default function Chat(){
 
 			<ul>
 			{
-				state.messages ? state.messages.map(e => 
+				state.messages ? state.messages.map((e, i) => 
 
-					<li key={e.id}>{e.text}</li>
+					<li key={i}>{e.text}</li>
 				) : <h1>Cargando...</h1>
 			}
 			</ul>
