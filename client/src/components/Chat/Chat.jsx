@@ -22,6 +22,8 @@ export default function Chat(){
 		if(message == '') return alert("No puedes enviar un mensaje vacio")
 		const list = !state.messages ? [] : state.messages
 		const newMessage = {
+			from: "",
+			to: "",
 			id: !state.messages ? 0 : state.messages.length,
 			text: message
 		}
@@ -30,7 +32,7 @@ export default function Chat(){
 
 		try{
 
-			await setDoc(doc(db, "messages", "H0woGYvUAyqYdn7wvTwr"), {
+			await setDoc(doc(db, "messages", "JOgk1Tb4ASSdZiWePocC"), {
 				chat: list
 			});
 		}
@@ -39,7 +41,7 @@ export default function Chat(){
 		}
 	}
 
-	const unsub = onSnapshot(doc(db, "messages", "H0woGYvUAyqYdn7wvTwr"), (doc) => {
+	const unsub = onSnapshot(doc(db, "messages", "JOgk1Tb4ASSdZiWePocC"), (doc) => {
 		
 		if(state.messages && doc.data() !== undefined){
 
@@ -51,7 +53,7 @@ export default function Chat(){
 
 	useEffect(async()=>{
 		
-		const docRef = doc(db, "messages", "H0woGYvUAyqYdn7wvTwr");
+		const docRef = doc(db, "messages", "JOgk1Tb4ASSdZiWePocC");
 		const docSnap = await getDoc(docRef);
 		let list = docSnap.data()
 		console.log(docSnap.data())
