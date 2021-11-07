@@ -19,12 +19,18 @@ const signIn = async (req, res) => {
       if (user) return res.json(user);
       return res.json({ noUser: true, gmail });
     }
-  } 
+  }
   try {
     const { name, idUser, gmail, photograph, userType } = req.body;
     if (userType === "juniors") {
       const user = await Juniors.findOne({ gmail });
       if (!user) {
+        const userCompany = await Company.findOne({ gmail });
+        if (userCompany)
+          return res.json({
+            auth: false,
+            msg: "Usuario tiene una cuenta como Company",
+          });
         var juniorsCreate = await Juniors.create({
           _id: idUser,
           name,
@@ -39,9 +45,15 @@ const signIn = async (req, res) => {
       });
       return res.json({ auth: true, token: token, user: juniorsCreate });
     }
-    if (userType === "company") {
-      const user = await Company.findOne({ gmail: gmail });
+    if (userType === "companies") {
+      const user = await Company.findOne({ gmail });
       if (!user) {
+        const userJunior = await Juniors.findOne({ gmail });
+        if (userJunior)
+          return res.json({
+            auth: false,
+            msg: "Usuario tiene una cuenta como Junior",
+          });
         var CompanyCreate = await Company.create({
           _id: idUser,
           name,
