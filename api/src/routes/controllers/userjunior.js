@@ -37,6 +37,7 @@ const getAllJuniors = async (req, res) => {
       { path: "technologies" },
       { path: "softskills" },
       { path: "publications" },
+      { path: "jobs" },
     ]);
     res.json(allJuniors);
   } catch (error) {
@@ -46,40 +47,41 @@ const getAllJuniors = async (req, res) => {
 
 const getJuniorById = async (req, res) => {
   try {
-    const token = req.headers["x-auth-token"];
-    if (!token) {
-      return res
-        .status(403)
-        .json({ auth: false, message: "se requiere token de autenticacion" });
-    }
+   //  const token = req.headers["x-auth-token"];
+   //  if (!token) {
+   //    return res
+   //      .status(403)
+   //      .json({ auth: false, message: "se requiere token de autenticacion" });
+   //  }
 
-    const decoded = await jwt.verify(token, SECRET);
+   //  const decoded = await jwt.verify(token, SECRET);
 	 
-    let user = await Juniors.findOne({idFireBase: decoded.id});
-	  if(!user) user = await Company.findOne({idFireBase: decoded.id});
-    if (!user) {
-      return res
-        .status(404)
-        .json({ auth: false, message: "usuario no registrado" });
-    }
+   //  let user = await Juniors.findOne({idFireBase: decoded.id});
+	  // if(!user) user = await Company.findOne({idFireBase: decoded.id});
+   //  if (!user) {
+   //    return res
+   //      .status(404)
+   //      .json({ auth: false, message: "usuario no registrado" });
+   //  }
 
     const { id } = req.params;
-    const { firebase } = req.query;
+   //  const { firebase } = req.query;
 
-    if(firebase === 'true'){
+   //  if(firebase === 'true'){
 
-      const getJunior = await Juniors.findOne({idFireBase: id})
-      .populate([{path: "languages"}, {path: "technologies"}, {path: "softskills"}, {path: "publications"}])
+   //    const getJunior = await Juniors.findOne({idFireBase: id})
+   //    .populate([{path: "languages"}, {path: "technologies"}, {path: "softskills"}, {path: "publications"}])
     
-      res.json(getJunior)
-      return
-    }
+   //    res.json(getJunior)
+   //    return
+   //  }
 
     Juniors.findById(id)
       .populate("languages")
       .populate("technologies")
       .populate("softskills")
       .populate("publications")
+      .populate("postulationsJobs")
       .exec((err, junior) => {
         if (err) {
           res.status(404).json({ message: err.message });
