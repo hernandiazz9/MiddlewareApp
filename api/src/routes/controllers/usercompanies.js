@@ -39,7 +39,7 @@ const getAllCompanies = async (req, res) => {
 };
 
 const getCompaniesById = async (req, res) => {
-  // try {
+  try {
     const token = req.headers["x-auth-token"];
     if (!token) {
       return res
@@ -72,9 +72,9 @@ const getCompaniesById = async (req, res) => {
     if (companiesGet) return res.json(companiesGet);
 
     res.status(404).json({ message: "The company not exist" });
-  // } catch (err) {
-  //   res.status(404).json({ message: err.message });
-  // }
+  } catch (err) {
+    res.status(404).json({ message: err.message });
+  }
 };
 
 const updateCompaniesProfile = async (req, res) => {
