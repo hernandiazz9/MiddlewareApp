@@ -78,7 +78,7 @@ function NavBar() {
 						</li> */}
             <li className={`nav-item dropdown  ${styles.items}`}>
               <a
-                className="nav-link dropdown-toggle bi bi-person-circle"
+                className="nav-link dropdown-toggle "
                 href="#"
                 id="navbarDropdown"
                 role="button"

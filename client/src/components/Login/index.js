@@ -41,7 +41,7 @@ const Login = () => {
       // console.log(userFirebase);
       if (errorLogin || user) return;
       console.log(user, "useeer de login");
-          history.push("/home/companies");
+      history.push("/home/companies");
       // dispatch(getUserAction(userFirebase));
       // if (!emailVerification) dispatch(emailVerificationAction(true));
     } else {
@@ -168,7 +168,7 @@ const Login = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 
