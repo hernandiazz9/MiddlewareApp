@@ -32,7 +32,7 @@ export default function Chat(){
 
 		try{
 
-			await setDoc(doc(db, "messages", "JOgk1Tb4ASSdZiWePocC"), {
+			await setDoc(doc(db, "messages", "eKzS1r3whihVuzfWeIl9"), {
 				chat: list
 			});
 		}
@@ -41,7 +41,8 @@ export default function Chat(){
 		}
 	}
 
-	const unsub = onSnapshot(doc(db, "messages", "JOgk1Tb4ASSdZiWePocC"), (doc) => {
+	//
+	const unsub = onSnapshot(doc(db, "messages", "eKzS1r3whihVuzfWeIl9"), (doc) => {
 		
 		if(state.messages && doc.data() !== undefined){
 
@@ -53,7 +54,7 @@ export default function Chat(){
 
 	useEffect(async()=>{
 		
-		const docRef = doc(db, "messages", "JOgk1Tb4ASSdZiWePocC");
+		const docRef = doc(db, "messages", "eKzS1r3whihVuzfWeIl9");
 		const docSnap = await getDoc(docRef);
 		let list = docSnap.data()
 		console.log(docSnap.data())
@@ -61,6 +62,7 @@ export default function Chat(){
 		setState({
 			messages: docSnap.data() !== undefined ? docSnap.data().chat : []
 		})
+		console.log(state)
 	}, []);
 
 	
